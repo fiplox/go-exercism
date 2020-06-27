@@ -12,7 +12,7 @@ func Square(square int) (uint64, error) {
 	return 1 << (square - 1), nil
 }
 
-// Total calculates the total number of grains on the chessboard
+// Total calculates the total number of grains on the chessboard.
 func Total() uint64 {
 	return 1<<64 - 1
 }
