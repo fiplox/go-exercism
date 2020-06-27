@@ -12,7 +12,6 @@ func Valid(input string) bool {
 
 	var sum int
 	var digit int
-
 	double := len(input)%2 == 0
 
 	for _, r := range input {
