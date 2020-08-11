@@ -27,16 +27,12 @@ func Build(records []Record) (*Node, error) {
 	})
 	for i, r := range records {
 		n[i] = &Node{ID: r.ID}
-		if i == 0 && r.ID != 0 {
-			return nil, errors.New("no root node")
-		} else if i == 0 && r.Parent != 0 {
-			return nil, errors.New("root node has parent")
+		if i == 0 && (r.ID != 0 || r.Parent != 0) {
+			return nil, errors.New("invalid root record")
 		} else if i == 0 {
 			continue
-		} else if i != r.ID {
-			return nil, errors.New("non-continuous")
-		} else if r.ID <= r.Parent {
-			return nil, errors.New("higher id parent of lower id")
+		} else if i != r.ID || r.ID <= r.Parent {
+			return nil, errors.New("invalid record")
 		}
 
 		if n[r.Parent] != nil {
